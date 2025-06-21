@@ -13,22 +13,23 @@ bp_software_folderpath = os.getenv("BP_Software_FolderPath")
 def run_blueprism_cli(action, name):
     # Replace these stubs with your actual CLI commands
     if action == "Import Process":
-        working_dir = "\Blue Prism\Process_Objects"
-        cli_command = '\"' + bp_software_folderpath + '\" ' + "/import " + '\"'+ name + '\" ' + "/overwrite " + "/user " + username + " " + password
+        working_dir = r"\Blue Prism\Process_Objects"
+        cli_command = f'"{bp_software_folderpath}" /import "{name}" /overwrite /user {username} {password}'
     elif action == "Import Release":
-        working_dir = "\Blue Prism\Package_Release"
-        cli_command = '\"' + bp_software_folderpath + '\" ' + "/importrelease " + '\"' +name+ '\" ' + "/overwrite " + "/user " + username + " " + password
+        working_dir = r"\Blue Prism\Package_Release"
+        cli_command = f'"{bp_software_folderpath}" /importrelease "{name}" /overwrite /user {username} {password}'
     elif action == "Export Process":
-        working_dir = "\Blue Prism\Process_Objects"
-        cli_command = '\"' + bp_software_folderpath + '\" ' + "/export " + '\"' +name+ '\" ' + "/user " + username + " " + password
+        working_dir = r"\Blue Prism\Process_Objects"
+        cli_command = f'"{bp_software_folderpath}" /export "{name}" /user {username} {password}'
     elif action == "Export Package":
-        working_dir = "\Blue Prism\Package_Release"
-        cli_command = '\"' + bp_software_folderpath + '\" ' + "/exportpackage " + '\"' + name + '\" ' + "/user " + username + " " + password
+        working_dir = r"\Blue Prism\Package_Release"
+        cli_command = f'"{bp_software_folderpath}" /exportpackage "{name}" /user {username} {password}'
     else:
         messagebox.showerror("Error", "Unknown action selected.")
         return
 
     try:
+        print(cli_command)
         if action == "Export Package":
             p = subprocess.Popen(cli_command, text=True, shell=True, cwd= os.getcwd() + working_dir)
             p.communicate()

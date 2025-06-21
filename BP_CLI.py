@@ -28,29 +28,29 @@ def execute_command(cmd: str, working_dir: str = None):
 def import_processORobjects(process_or_object_filename: str):
     """ Import Process or Objects in Blue Prism """
     base_folder = "\Blue Prism\Process_Objects"
-    cli_command = '\"' + bp_software_folderpath + '\" ' + "/import " + '\"'+ process_or_object_filename + '\" ' + "/overwrite " + "/user " + username + " " + password
+    cli_command = f'"{bp_software_folderpath}" /import "{process_or_object_filename}" /overwrite /user {username} {password}'
     return execute_command(cli_command, os.getcwd()+base_folder)
 
 
 def import_releaseORskills(release_or_skill_name: str):
     """ Import Release or Skills in Blue Prism """
     base_folder = "\Blue Prism\Package_Release"
-    cli_command = '\"' + bp_software_folderpath + '\" ' + "/importrelease " + '\"' + release_or_skill_name+ '\" ' + "/overwrite " + "/user " + username + " " + password
+    cli_command = f'"{bp_software_folderpath}" /importrelease "{release_or_skill_name}" /overwrite /user {username} {password}'
     return execute_command(cli_command, os.getcwd()+base_folder)
 
 
 def export_processORobjects(process_Or_object_name: str):
     """ Export Process or Objects from Blue Prism to the specified folder location """
     base_folder = "\Blue Prism\Process_Objects"
-    cli_command = '\"' + bp_software_folderpath + '\" ' + "/export " + '\"' +process_Or_object_name+ '\" ' + "/user " + username + " " + password
+    cli_command = f'"{bp_software_folderpath}" /export "{process_Or_object_name}" /user {username} {password}'
     execute_command(cli_command, os.getcwd()+base_folder)
 
 
 def export_ReleaseFromPackage(package_name: str):
     """ Export Package Release from Blue Prism Release Tab to the Specified folder location, for this the Package should be created in the blueprism """
     base_folder = "\Blue Prism\Package_Release"
-    cli_command = '\"' + bp_software_folderpath + '\" ' + "/exportpackage " + '\"' + package_name + '\" ' + "/user " + username + " " + password
+    cli_command = f'"{bp_software_folderpath}" /exportpackage "{package_name}" /user {username} {password}'
     return execute_command(cli_command, os.getcwd() + base_folder)
 
 
-# print(import_releaseORskills(r"C:\Users\rohit\Desktop\blueprism_github_release_manager\Blue Prism\Package_Release\All BluePrism Process and Objects - Release 1.bprelease"))
+print(export_ReleaseFromPackage(r"All BluePrism Process and Objects"))
