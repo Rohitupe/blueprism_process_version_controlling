@@ -76,6 +76,6 @@ You can also use the functions in `BP_CLI.py` directly in your own scripts:
 ## More Information
 
 For detailed information on Blue Prism command-line options, see the official documentation:  
-[Blue Prism Command Line Help](https://docs.blueprism.com/en-US/bundle/blue-prism-enterprise-6-7/page/helpCommandLine.htm)
+[Blue Prism Command Line Help](https://docs.blueprism.com/en-US/bundle/blue-prism-enterprise-7-4/page/helpCommandLine.htm)
 
 ---
