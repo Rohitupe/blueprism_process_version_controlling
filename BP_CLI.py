@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 import subprocess
-import pwinput
 
 load_dotenv()
 
@@ -13,20 +12,12 @@ bp_software_folderpath = os.getenv("BP_Software_FolderPath")
 # output, _ = p.communicate()
 # print(output)
 
-# username = input("Enter your username: ")
-# password = pwinput.pwinput(prompt='Enter your password: ', mask='*')
-
-"""
-"C:\Program Files\Blue Prism Limited\Blue Prism Automate\AutomateC.exe" 
-/exportpackage "All BluePrism Process and Objects"  /user username password
-"""
 
 def execute_command(cmd: str, working_dir: str = None):
     # p = subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True, shell=True, cwd=working_dir)  # doesnt work for the export_ReleaseFromPackage, becoz of the console cursor position
-    # p = subprocess.Popen(cmd, text=True, shell=True, cwd=working_dir)
-    p = subprocess.run(cmd, shell=True, capture_output=True, text=True, cwd=working_dir)
-    # output, _ = p.communicate()
-    # return output
+    p = subprocess.Popen(cmd, text=True, shell=True, cwd=working_dir)
+    output, _ = p.communicate()
+    return output
 
 
 def import_processORobjects(file_name: str):
@@ -48,7 +39,7 @@ def export_processORobjects(process_Or_object_name: str):
 def export_ReleaseFromPackage(package_name: str):
     base_folder = "\Blue Prism\Package_Release\\"
     cli_command = '\"' + bp_software_folderpath + '\" ' + "/exportpackage " + '\"' + package_name + '\" ' + "/user " + username + " " + password
-    execute_command(cli_command, os.getcwd() + base_folder)
+    return execute_command(cli_command, os.getcwd() + base_folder)
 
 
-print(export_processORobjects(r"python_scope_executions"))
+# print(import_releaseORskills(r"C:\Users\rohit\Desktop\blueprism_github_release_manager\Blue Prism\Package_Release\All BluePrism Process and Objects - Release 1.bprelease"))
